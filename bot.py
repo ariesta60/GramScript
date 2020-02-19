@@ -57,6 +57,7 @@ tag = -1
 stories_watched = 0
 
 # setting comments
+
 sleep(2)
 watch_all_stories_btn = webdriver.find_element_by_xpath(
     "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
@@ -81,9 +82,11 @@ except NoSuchElementException:
         image_img.click()
         sleep(1)
         
+        
         while likes <= 12:  # set max number of likes per hashtag here
             sleep(1)
             print("trying to like image...")
+            sleep(1)
             image_like_svg=webdriver.find_element_by_css_selector(
                 '.fr66n > button:nth-child(1) > svg:nth-child(1)')
             image_like_label=image_like_svg.get_attribute("aria-label")
@@ -118,49 +121,63 @@ except NoSuchElementException:
         sleep(2)
         image_img.click()
         
-        while comments <= 2:  # set max number of comment per hashtag here
-            all_comments = []
-            comment_by_user = webdriver.find_elements_by_class_name('TlrDj')
-            
-            for i in comment_by_user:
-                all_comments.append(i.get_attribute('title'))
-
-            if any(x == secret.username for x in all_comments):
+        for hashtag in hashtag_list:
                 sleep(2)
-                image_next=webdriver.find_element_by_xpath(
-                '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(2)
-            else:
-                print("no comment")
-                sleep(2)
-                comment_list=['nice one 👍🏼', 'great! 🚀',
-                            'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
-                comment_item=random.choice(comment_list)
+                tag += 1
+                webdriver.get('https://www.instagram.com/explore/tags/' +
+                            hashtag_list[tag] + '/')
+                image_img=webdriver.find_element_by_xpath(
+                    '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
+                sleep(1)
+                image_img.click()
+                sleep(1)
+                while comments <= 2:  # set max number of comment per hashtag here
+                    all_comments = []
+                    comment_by_user = webdriver.find_elements_by_class_name('ZIAjV')
+                    
+                    for i in comment_by_user:
+                        all_comments.append(i.get_attribute('innerText'))
 
-                sleep(randint(1, 5))  # random timer here
+                    if any(x == secret.username for x in all_comments):
+                        sleep(2)
+                        image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                        image_next.click()
+                        sleep(2)
+                    else:
+                        print("no comment")
+                        sleep(2)
+                        comment_list=['nice one 👍🏼', 'great! 🚀',
+                                    'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
+                        comment_item=random.choice(comment_list)
 
-                comment_box=ui.WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable(
-                    (By.XPATH, "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/textarea")))
-                webdriver.execute_script(
-                    "arguments[0].scrollIntoView(true);", comment_box)
+                        sleep(randint(1, 5))  # random timer here
 
-                (
-                    ActionChains(webdriver)
-                    .move_to_element(comment_box)
-                    .click()
-                    .send_keys(comment_item)
-                    .perform()
-                )
+                        comment_box=ui.WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable(
+                            (By.XPATH, "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/textarea")))
+                        webdriver.execute_script(
+                            "arguments[0].scrollIntoView(true);", comment_box)
 
-                sleep(2)
+                        (
+                            ActionChains(webdriver)
+                            .move_to_element(comment_box)
+                            .click()
+                            .send_keys(comment_item)
+                            .perform()
+                        )
 
-                send_comment=webdriver.find_element_by_xpath(
-                    "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/button")
-                send_comment.click()
-                comments += 1
-                print('images commented: {}'.format(comments))
-                sleep(25)
-                sleep(randint(5, 10))  # random timer here
-        likes=0
-        comments=0
+                        sleep(2)
+
+                        send_comment=webdriver.find_element_by_xpath(
+                            "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/button")
+                        send_comment.click()
+                        comments += 1
+                        print('images commented: {}'.format(comments))
+                        sleep(25)
+                        sleep(randint(5, 10))  # random timer here
+                        image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                        image_next.click()
+                        sleep(1)
+                likes=0
+                comments=0
