@@ -16,6 +16,7 @@ from tqdm import tqdm_gui
 import sys
 sys.path.insert(0, './utils/')
 import secret
+import hashtags
 
 tprint("Instagram")
 tprint("Bot")
@@ -27,12 +28,12 @@ print("Loading Scripts...")
 for i in tqdm(range(100)):
     sleep(0.01)
     pass
-chromedriver_path = './geckodriver'  # Change this to your own chromedriver path!
-webdriver = webdriver.Firefox(executable_path="./geckodriver")
+profile = webdriver.FirefoxProfile()
+profile.set_preference("media.volume_scale", "0.0")
+webdriver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=profile)
 sleep(2)
 webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
 sleep(3)
-
 username = webdriver.find_element_by_name('username')
 username.send_keys(secret.username)
 password = webdriver.find_element_by_name('password')
@@ -46,8 +47,6 @@ sleep(10)
 notnow = webdriver.find_element_by_css_selector(
     'button.aOOlW:nth-child(2)')
 notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
-
-hashtag_list = ['autoflowers', 'marshydro', 'growroom', 'cannabishomegrow', 'growingganja', 'biocannabis']
 
 # setting optioins to 0
 
@@ -70,12 +69,15 @@ try:
         sleep(randint(2, 3))
         stories_watched += 1
         print("stories watched: {}".format(stories_watched))
+
+
+
 except NoSuchElementException:
-    for hashtag in hashtag_list:
+    for hashtag in hashtags.hashtag_list:
         sleep(2)
         tag += 1
         webdriver.get('https://www.instagram.com/explore/tags/' +
-                    hashtag_list[tag] + '/')
+                    hashtags.hashtag_list[tag] + '/')
         image_img=webdriver.find_element_by_xpath(
             '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
         sleep(1)
