@@ -1,1 +1,5 @@
-this is the utils folder. Her you can set your password in the secret file
+This is the Utility folder of the Project.
+All config files will be stored here.
+
+'secrect.py' = Enter your Instagram Username and Password
+'hashtags.py' = Enter the hashtags you want to use for the Bot
