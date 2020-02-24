@@ -20,6 +20,7 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 ## Features
 
 * Watch all Stories from feed
+    * Brower is muted for story watching
 * Like recent posts from a certain hashtag
     * Detects if post already got liked by user
 * Comment on recent posts from a certain hashtag
@@ -32,7 +33,10 @@ Any problems with running the script and any questions please cantact me via Twi
 ### Prerequisites
 
 You need python 3 installed on your System.
+
 As well as Selenium and the Firefox Webdriver
+
+(Place the geckodriver file in the main directory)
 
 Get a copy of the Project. Open your Terminal and enter:
 
@@ -51,9 +55,9 @@ After that you can proceed to edit the Script.
 
 ### Edit Script
 
-Open /utils/secret.py with any TextEditor.
+Open the /utils folder and open the readme.txt file
 
-Change all needed values such as username and password.
+There will instructions on how the change the config files.
 
 Also open bot.py and change the max rate limits.
 
