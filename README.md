@@ -61,6 +61,8 @@ There will instructions on how the change the config files.
 
 Also open bot.py and change the max rate limits.
 
+(On line 21 to 23)
+
 ## Running 🏃🏽‍♂️
 
 To run this script open your Terminal in the project directory.

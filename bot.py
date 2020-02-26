@@ -18,6 +18,10 @@ sys.path.insert(0, './utils/')
 import secret
 import hashtags
 
+max_stories = 30 # set max number of stories to watch
+max_likes = 12 # set max number of likes per hashtag here
+max_comments = 2 # set max number of comments per hashtag here
+
 tprint("Instagram")
 tprint("Bot")
 sleep(2)
@@ -48,16 +52,12 @@ notnow = webdriver.find_element_by_css_selector(
     'button.aOOlW:nth-child(2)')
 notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
 
-# setting optioins to 0
-
 likes = 0
 comments = 0
 tag = -1
 stories_watched = 0
 
-# setting comments
-
-while stories_watched <= 30:
+while stories_watched <= max_stories:
     sleep(2)
     watch_all_stories_btn = webdriver.find_element_by_xpath(
         "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
@@ -89,7 +89,7 @@ else:
             sleep(1)
             
             
-            while likes <= 12:  # set max number of likes per hashtag here
+            while likes <= max_likes:
                 sleep(1)
                 print("trying to like image...")
                 sleep(1)
@@ -128,7 +128,7 @@ else:
             image_img.click()
             
 
-            while comments <= 2:  # set max number of comment per hashtag here
+            while comments <= max_comments:  
                 all_comments = []
                 comment_by_user = webdriver.find_elements_by_class_name('ZIAjV')
                 
