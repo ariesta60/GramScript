@@ -71,7 +71,8 @@ while stories_watched <= max_stories:
             stories_watched += 1
             print("stories watched: {}".format(stories_watched))
     except NoSuchElementException:
-        stories_watched = 31
+        stories_watched = max_stories
+        stories_watched += 1
 else:
     try:
         watch_all_stories_close = webdriver.find_element_by_xpath("/html/body/div[1]/section/div/div/section/div[2]/button[3]/div/span")
