@@ -1,3 +1,5 @@
+# VERSION 0.1.3
+
 from art import *
 import pandas as pd
 import random
