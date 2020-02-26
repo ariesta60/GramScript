@@ -20,6 +20,10 @@ sys.path.insert(0, './utils/')
 import secret
 import hashtags
 
+max_stories = 30 # set max number of stories to watch
+max_likes = 12 # set max number of likes per hashtag here
+max_comments = 2 # set max number of comments per hashtag here
+
 tprint("Instagram")
 tprint("Bot")
 sleep(2)
@@ -50,129 +54,130 @@ notnow = webdriver.find_element_by_css_selector(
     'button.aOOlW:nth-child(2)')
 notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
 
-# setting optioins to 0
-
 likes = 0
 comments = 0
 tag = -1
 stories_watched = 0
 
-# setting comments
-
-sleep(2)
-watch_all_stories_btn = webdriver.find_element_by_xpath(
-    "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
-watch_all_stories_btn.click()
-sleep(2)
-try:
-    while webdriver.find_element_by_css_selector(".ow3u_"):
-        watch_all_stories_next = webdriver.find_element_by_css_selector(".ow3u_")
-        watch_all_stories_next.click()
-        sleep(randint(2, 3))
+while stories_watched <= max_stories:
+    sleep(2)
+    watch_all_stories_btn = webdriver.find_element_by_xpath(
+        "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
+    watch_all_stories_btn.click()
+    sleep(2)
+    try:
+        while webdriver.find_element_by_css_selector(".ow3u_"):
+            watch_all_stories_next = webdriver.find_element_by_css_selector(".ow3u_")
+            watch_all_stories_next.click()
+            sleep(randint(2, 3))
+            stories_watched += 1
+            print("stories watched: {}".format(stories_watched))
+    except NoSuchElementException:
+        stories_watched = max_stories
         stories_watched += 1
-        print("stories watched: {}".format(stories_watched))
-
-
-
-except NoSuchElementException:
-    for hashtag in hashtags.hashtag_list:
-        sleep(2)
-        tag += 1
-        webdriver.get('https://www.instagram.com/explore/tags/' +
-                    hashtags.hashtag_list[tag] + '/')
-        image_img=webdriver.find_element_by_xpath(
-            '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
-        sleep(1)
-        image_img.click()
-        sleep(1)
-        
-        
-        while likes <= 12:  # set max number of likes per hashtag here
+else:
+    try:
+        watch_all_stories_close = webdriver.find_element_by_xpath("/html/body/div[1]/section/div/div/section/div[2]/button[3]/div/span")
+        watch_all_stories_close.click()
+    except NoSuchElementException:    
+        for hashtag in hashtags.hashtag_list:
+            sleep(2)
+            tag += 1
+            webdriver.get('https://www.instagram.com/explore/tags/' +
+                        hashtags.hashtag_list[tag] + '/')
+            image_img=webdriver.find_element_by_xpath(
+                '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
             sleep(1)
-            print("trying to like image...")
+            image_img.click()
             sleep(1)
-            image_like_svg=webdriver.find_element_by_css_selector(
-                '.fr66n > button:nth-child(1) > svg:nth-child(1)')
-            image_like_label=image_like_svg.get_attribute("aria-label")
-            if image_like_label == "Like":
-                image_like_svg.click()
-                likes += 1
-                print('liked images: {}'.format(likes))
-                sleep(randint(5, 15))  # random timer here
-                image_next=webdriver.find_element_by_xpath(
-                    '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(randint(2, 3))  # random timer here
-            else:
-                print('image already liked')
-                image_next=webdriver.find_element_by_xpath(
-                    '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(1)  # random timer here
-        else:
-            print('finished like process')
-            print('total liked images: {}'.format(likes))
-            sleep(2)
-            print('moving on to the next process...')
-            image_close=webdriver.find_element_by_xpath(
-                '/html/body/div[4]/div[3]/button')
-            sleep(2)
-            image_close.click()
-            sleep(2)
-
-        image_img=webdriver.find_element_by_xpath(
-            '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
-        sleep(2)
-        image_img.click()
-        
-
-        while comments <= 2:  # set max number of comment per hashtag here
-            all_comments = []
-            comment_by_user = webdriver.find_elements_by_class_name('ZIAjV')
             
-            for i in comment_by_user:
-                all_comments.append(i.get_attribute('innerText'))
-
-            if any(x == secret.username for x in all_comments):
-                sleep(2)
-                image_next=webdriver.find_element_by_xpath(
-                '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(2)
-            else:
-                print("no comment")
-                sleep(2)
-                comment_list=['nice one 👍🏼', 'great! 🚀',
-                            'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
-                comment_item=random.choice(comment_list)
-
-                sleep(randint(1, 5))  # random timer here
-
-                comment_box=ui.WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable(
-                    (By.XPATH, "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/textarea")))
-                webdriver.execute_script(
-                    "arguments[0].scrollIntoView(true);", comment_box)
-
-                (
-                    ActionChains(webdriver)
-                    .move_to_element(comment_box)
-                    .click()
-                    .send_keys(comment_item)
-                    .perform()
-                )
-
-                sleep(2)
-
-                send_comment=webdriver.find_element_by_xpath(
-                    "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/button")
-                send_comment.click()
-                comments += 1
-                print('images commented: {}'.format(comments))
-                sleep(25)
-                sleep(randint(5, 10))  # random timer here
-                image_next=webdriver.find_element_by_xpath(
-                '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
+            
+            while likes <= max_likes:
                 sleep(1)
-        likes=0
-        comments=0
+                print("trying to like image...")
+                sleep(1)
+                image_like_svg=webdriver.find_element_by_css_selector(
+                    '.fr66n > button:nth-child(1) > svg:nth-child(1)')
+                image_like_label=image_like_svg.get_attribute("aria-label")
+                if image_like_label == "Like":
+                    image_like_svg.click()
+                    likes += 1
+                    print('liked images: {}'.format(likes))
+                    sleep(randint(5, 15))  # random timer here
+                    image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(randint(2, 3))  # random timer here
+                else:
+                    print('image already liked')
+                    image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(1)  # random timer here
+            else:
+                print('finished like process')
+                print('total liked images: {}'.format(likes))
+                sleep(2)
+                print('moving on to the next process...')
+                image_close=webdriver.find_element_by_xpath(
+                    '/html/body/div[4]/div[3]/button')
+                sleep(2)
+                image_close.click()
+                sleep(2)
+
+            image_img=webdriver.find_element_by_xpath(
+                '/html/body/div[1]/section/main/article/div[2]/div/div[1]/div[1]')
+            sleep(2)
+            image_img.click()
+            
+
+            while comments <= max_comments:  
+                all_comments = []
+                comment_by_user = webdriver.find_elements_by_class_name('ZIAjV')
+                
+                for i in comment_by_user:
+                    all_comments.append(i.get_attribute('innerText'))
+
+                if any(x == secret.username for x in all_comments):
+                    sleep(2)
+                    image_next=webdriver.find_element_by_xpath(
+                    '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(2)
+                else:
+                    print("no comment")
+                    sleep(2)
+                    comment_list=['nice one 👍🏼', 'great! 🚀',
+                                'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
+                    comment_item=random.choice(comment_list)
+
+                    sleep(randint(1, 5))  # random timer here
+
+                    comment_box=ui.WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable(
+                        (By.XPATH, "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/textarea")))
+                    webdriver.execute_script(
+                        "arguments[0].scrollIntoView(true);", comment_box)
+
+                    (
+                        ActionChains(webdriver)
+                        .move_to_element(comment_box)
+                        .click()
+                        .send_keys(comment_item)
+                        .perform()
+                    )
+
+                    sleep(2)
+
+                    send_comment=webdriver.find_element_by_xpath(
+                        "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/button")
+                    send_comment.click()
+                    comments += 1
+                    print('images commented: {}'.format(comments))
+                    sleep(25)
+                    sleep(randint(5, 10))  # random timer here
+                    image_next=webdriver.find_element_by_xpath(
+                    '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(1)
+            likes=0
+            comments=0
