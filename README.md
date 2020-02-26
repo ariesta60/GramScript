@@ -27,7 +27,7 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
     * Custom limit on media's being liked
 * Comment on recent posts from a certain hashtag
     * Detects if post already got commented by user
-    * Custom limit on media'c being commented
+    * Custom limit on media's being commented
 
 ### Support 👨‍💻
 
