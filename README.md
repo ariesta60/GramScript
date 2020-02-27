@@ -2,7 +2,6 @@
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
   <h1>Instagram Selenium Bot</h1>
 </div>
-[Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
 
 
 # 🔥 Version 0.1.3 🔥
@@ -36,6 +35,8 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 Any problems with running the script and any questions please cantact me via Twitter [@hendrik_bgr](https://twitter.com/Hendrik_bgr)
 
 Or via email under [hendriksdevmail@gmail.com](mailto:hendriskdevmail@gmail.com)
+
+Or Email the whole team [Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
 ### Prerequisites
 
 You need python 3 installed on your System.
