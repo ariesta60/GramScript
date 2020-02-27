@@ -2,7 +2,7 @@
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
   <h1>Instagram Selenium Bot</h1>
 </div>
-## [Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
+[Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
 
 
 # 🔥 Version 0.1.3 🔥
