@@ -3,8 +3,7 @@
   <h1>Instagram Selenium Bot</h1>
 </div>
 
-
-# 🔥 Version 0.1.3 🔥
+# 🔥 Version 0.1.4 🔥
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
 
@@ -14,7 +13,7 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 
 🚀 Automate your Instagram Account 🚀
 
-📌 Ver. 0.1.3 📌
+📌 Ver. 0.1.4 📌
 
 ⚠ No Proxy Support yet ⚠️
 
