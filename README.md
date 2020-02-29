@@ -21,18 +21,21 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 
 * Watch all Stories from feed
     * Brower is muted for story watching
-    * Custom limit on stories beeing watched
+    * Custom limit on stories being watched
 * Like recent posts from a certain hashtag
     * Detects if post already got liked by user
-    * Custom limit on media's beeing liked
+    * Custom limit on media's being liked
 * Comment on recent posts from a certain hashtag
     * Detects if post already got commented by user
-    * Custom limit on media'c beeing commented
+    * Custom limit on media's being commented
 
 ### Support 👨‍💻
 
 Any problems with running the script and any questions please cantact me via Twitter [@hendrik_bgr](https://twitter.com/Hendrik_bgr)
 
+Or via email under [hendriksdevmail@gmail.com](mailto:hendriskdevmail@gmail.com)
+
+Or Email the whole team [Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
 ### Prerequisites
 
 You need python 3 installed on your System.
@@ -64,7 +67,7 @@ There will instructions on how the change the config files.
 
 Also open bot.py and change the max rate limits.
 
-(On line 21 to 23)
+(On line 23 to 25)
 
 ## Running 🏃🏽‍♂️
 

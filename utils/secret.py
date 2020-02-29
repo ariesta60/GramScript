@@ -1,2 +1,3 @@
-username = "ig username"
-password = "ig password"
+username = "your ig username"
+password = "your ig password"
+
