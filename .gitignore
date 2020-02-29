@@ -1,5 +1,6 @@
+utils/*
+img/*
 geckodriver
 geckodriver.log
 chromedriver
-utils/*
-img/*
+utils/secret.py
