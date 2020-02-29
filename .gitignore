@@ -1,7 +1,5 @@
 geckodriver
 geckodriver.log
 chromedriver
-utils/secret.py
-utils/__pycache__
-utils/hashtags.py
+utils/*
 img/*
