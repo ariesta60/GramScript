@@ -1,1 +1,1 @@
-hashtag_list = ['cannabisgrowers', 'indoorgrowers', 'growingcannabis']
+hashtag_list = ['cannabis', 'growcannabis', 'cannabisgrow', 'cannabisgrower']

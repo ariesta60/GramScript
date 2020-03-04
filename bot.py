@@ -20,8 +20,8 @@ sys.path.insert(0, './utils/')
 import secret
 import hashtags
 
-max_stories = 5 # set max number of stories to watch
-max_likes = 12 # set max number of likes per hashtag here
+max_stories = 30 # set max number of stories to watch
+max_likes = 10 # set max number of likes per hashtag here
 max_comments = 2 # set max number of comments per hashtag here
 
 tprint("Instagram")
@@ -54,10 +54,10 @@ notnow = webdriver.find_element_by_css_selector(
     'button.aOOlW:nth-child(2)')
 notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
 
-likes = 0
-comments = 0
+likes = -1
+comments = -1
 tag = -1
-stories_watched = 0
+stories_watched = -1
 
 sleep(2)
 watch_all_stories_btn = webdriver.find_element_by_xpath(
@@ -97,24 +97,31 @@ else:
             sleep(1)
             print("trying to like image...")
             sleep(1)
-            image_like_svg=webdriver.find_element_by_css_selector(
-                '.fr66n > button:nth-child(1) > svg:nth-child(1)')
-            image_like_label=image_like_svg.get_attribute("aria-label")
-            if image_like_label == "Like":
-                image_like_svg.click()
-                likes += 1
-                print('liked images: {}'.format(likes))
-                sleep(randint(5, 15))  # random timer here
+            try:
+                image_like_svg=webdriver.find_element_by_css_selector(
+                    '.fr66n > button:nth-child(1) > svg:nth-child(1)')
+                image_like_label=image_like_svg.get_attribute("aria-label")
+                if image_like_label == "Like":
+                    image_like_svg.click()
+                    likes += 1
+                    print('liked images: {}'.format(likes))
+                    sleep(randint(5, 15))  # random timer here
+                    image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(randint(3, 4))  # random timer here
+                else:
+                    print('image already liked')
+                    image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(2)  # random timer here
+            except NoSuchElementException:
+                print('error loading image...')
                 image_next=webdriver.find_element_by_xpath(
-                    '/html/body/div[4]/div[1]/div/div/a[2]')
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
                 image_next.click()
-                sleep(randint(2, 3))  # random timer here
-            else:
-                print('image already liked')
-                image_next=webdriver.find_element_by_xpath(
-                    '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(1)  # random timer here
+                sleep(2)  # random timer here
         else:
             print('finished like process')
             print('total liked images: {}'.format(likes))
