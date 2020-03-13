@@ -1,7 +1,9 @@
 <div align="center">
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
-  <h1>Instagram Selenium Bot</h1>
-  <h4 style="color:green">WORKING AFTER MARCH 2020 API UPDATE!</h4>
+  <div>
+    <h1>Instagram Selenium Bot</h1>
+    <h4 style="color:green">WORKING AFTER MARCH 2020 API UPDATE!</h4>
+  </div>
 </div>
 
 # 🔥 Version 0.1.6 🔥
