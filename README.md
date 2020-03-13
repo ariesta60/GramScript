@@ -1,6 +1,8 @@
 <div align="center">
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
-  <h1>Instagram Selenium Bot</h1>
+  <div>
+    <h1>Instagram Selenium Bot</h1>
+  </div>
 </div>
 
 # 🔥 Version 0.1.6 🔥
@@ -9,13 +11,19 @@ This is the first version of this Instagram bot. Much more is to come in future 
 
 Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 
+## ✅ Working after March 2020 API Update! ✅
+
+This script is still working after Instagram is cutting down the API access and with that loads of long working instagram script. This script does not use any API and for that I will be working beyond this update.
+
+Remember to keep your copy up to date!
+
 # Instagram Selenium Bot
 
 🚀 Automate your Instagram Account 🚀
 
 📌 Ver. 0.1.6 📌
 
-⚠ No Proxy Support yet ⚠️
+⚠️ No Proxy Support yet ⚠️
 
 ## Features
 
@@ -39,7 +47,6 @@ Any problems with running the script and any questions please cantact me via Twi
 
 Or via email under [hendriksdevmail@gmail.com](mailto:hendriskdevmail@gmail.com)
 
-Or Email the whole team [Email Us](mailto:Instagram-Selenium-Bot@protonmail.com)
 ### Prerequisites
 
 You need python 3 installed on your System.
@@ -93,10 +100,8 @@ python bot.py
 
 ## To Do List 📝
 
-* Add follow script
 * Add unfollow script
-* Store information in database so the same media wont get targeted twice
-* Add inputs for rate limits on startup & optional create config file.
+* Add inputs for rate limits on startup or choose config file
 
 ## Known Bugs 🐛
 
