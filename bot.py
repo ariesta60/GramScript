@@ -1,4 +1,4 @@
-# VERSION 0.1.5
+# VERSION 0.1.6
 
 from art import *
 import pandas as pd
@@ -19,10 +19,7 @@ import sys
 sys.path.insert(0, './utils/')
 import secret
 import hashtags
-
-max_stories = 30 # set max number of stories to watch
-max_likes = 10 # set max number of likes per hashtag here
-max_comments = 2 # set max number of comments per hashtag here
+import limits
 
 tprint("Instagram")
 tprint("Bot")
@@ -54,10 +51,11 @@ notnow = webdriver.find_element_by_css_selector(
     'button.aOOlW:nth-child(2)')
 notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
 
-likes = -1
-comments = -1
+likes = 0
+comments = 0
 tag = -1
 stories_watched = -1
+suggestions_counter = 1
 
 sleep(2)
 watch_all_stories_btn = webdriver.find_element_by_xpath(
@@ -65,7 +63,7 @@ watch_all_stories_btn = webdriver.find_element_by_xpath(
 watch_all_stories_btn.click()
 sleep(2)
 
-while stories_watched <= max_stories:
+while stories_watched <= limits.max_stories:
     try:
         watch_all_stories_next = webdriver.find_element_by_css_selector(".ow3u_")
         watch_all_stories_next.click()
@@ -73,7 +71,7 @@ while stories_watched <= max_stories:
         stories_watched += 1
         print("stories watched: {}".format(stories_watched))
     except NoSuchElementException:
-        stories_watched += max_stories
+        stories_watched += limits.max_stories
         stories_watched += 1
 else:
     try:
@@ -81,6 +79,23 @@ else:
         watch_all_stories_close.click()
     except NoSuchElementException:
         pass
+    sleep(1)
+    try:
+        suggestions_all_btn = webdriver.find_element_by_xpath("/html/body/div[1]/section/main/section/div[3]/div[3]/div[1]/a")
+        suggestions_all_btn.click()
+        sleep(3)
+        while suggestions_counter <= limits.max_follow_suggestion:
+            suggestions_follow_btn = webdriver.find_element_by_css_selector("div.XfCBB:nth-child({0}) > div:nth-child(3) > button:nth-child(1)".format(suggestions_counter))
+            suggestions_follow_btn.click()
+            suggestions_counter += 1
+            sleep(randint(5, 15))
+            print("suggestions followed: {}".format(suggestions_counter))
+        else:
+            print("total number of users being followed: {}".format(suggestions_counter))
+            pass
+    except NoSuchElementException:
+        pass
+
     for hashtag in hashtags.hashtag_list:
         sleep(2)
         tag += 1
@@ -93,7 +108,7 @@ else:
         sleep(1)
         
         
-        while likes <= max_likes:
+        while likes <= limits.max_likes:
             sleep(1)
             print("trying to like image...")
             sleep(1)
@@ -139,7 +154,7 @@ else:
         image_img.click()
         
 
-        while comments <= max_comments:  
+        while comments <= limits.max_comments:  
             all_comments = []
             comment_by_user = webdriver.find_elements_by_class_name('ZIAjV')
             
