@@ -1,6 +1,7 @@
 <div align="center">
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
   <h1>Instagram Selenium Bot</h1>
+  <h4 style="color:green">WORKING AFTER MARCH 2020 API UPDATE!</h4>
 </div>
 
 # 🔥 Version 0.1.6 🔥
@@ -15,7 +16,7 @@ Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 
 📌 Ver. 0.1.6 📌
 
-⚠ No Proxy Support yet ⚠️
+⚠️ No Proxy Support yet ⚠️
 
 ## Features
 
