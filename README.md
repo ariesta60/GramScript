@@ -11,9 +11,11 @@ This is the first version of this Instagram bot. Much more is to come in future 
 
 Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
 
-## ✅ Working after March 2020 API Update!
+## ✅ Working after March 2020 API Update! ✅
 
 This script is still working after Instagram is cutting down the API access and with that loads of long working instagram script. This script does not use any API and for that I will be working beyond this update.
+
+Remember to keep your copy up to date!
 
 # Instagram Selenium Bot
 
