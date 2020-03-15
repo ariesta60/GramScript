@@ -5,3 +5,7 @@ chromedriver
 /utils/secret.py
 /utils/hashtags.py
 /utils/limits.py
+utils/hashtags.py
+utils/secret.py
+utils/limits.py
+utils/hashtags.py

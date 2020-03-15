@@ -87,9 +87,9 @@ else:
         while suggestions_counter <= limits.max_follow_suggestion:
             suggestions_follow_btn = webdriver.find_element_by_css_selector("div.XfCBB:nth-child({0}) > div:nth-child(3) > button:nth-child(1)".format(suggestions_counter))
             suggestions_follow_btn.click()
+            print("suggestions followed: {}".format(suggestions_counter))
             suggestions_counter += 1
             sleep(randint(5, 15))
-            print("suggestions followed: {}".format(suggestions_counter))
         else:
             print("total number of users being followed: {}".format(suggestions_counter))
             pass
@@ -132,11 +132,21 @@ else:
                     image_next.click()
                     sleep(2)  # random timer here
             except NoSuchElementException:
-                print('error loading image...')
-                image_next=webdriver.find_element_by_xpath(
-                        '/html/body/div[4]/div[1]/div/div/a[2]')
-                image_next.click()
-                sleep(2)  # random timer here
+                try:
+                    print('error loading image...')
+                    image_next=webdriver.find_element_by_xpath(
+                            '/html/body/div[4]/div[1]/div/div/a[2]')
+                    image_next.click()
+                    sleep(2)  # random timer here
+                except NoSuchElementException:
+                    print('no more images...')
+                    image_close=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[3]/button')
+                    sleep(2)
+                    image_close.click()
+                    sleep(2)
+                    likes += limits.max_likes
+
         else:
             print('finished like process')
             print('total liked images: {}'.format(likes))
