@@ -26,7 +26,7 @@ tprint("Bot")
 sleep(2)
 print("Made with Selenium")
 sleep(1)
-print("Version 1.0")
+print("Version 0.1.6")
 print("Loading Scripts...")
 for i in tqdm(range(100)):
     sleep(0.01)
