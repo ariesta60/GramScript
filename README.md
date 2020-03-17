@@ -62,7 +62,6 @@ git clone https://github.com/hendrikbgr/Instagram-Selenium-Bot
 ```
 
 To install all needed requirements run the following command in the project directory:
-(coming soon...)
 
 ```
 pip install -r requirements.txt
