@@ -57,6 +57,11 @@ tag = -1
 stories_watched = -1
 suggestions_counter = 1
 
+total_likes = 0
+total_comments = 0
+total_stories_watched = 0
+total_suggestion_followed = 0
+
 sleep(2)
 watch_all_stories_btn = webdriver.find_element_by_xpath(
     "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
@@ -69,6 +74,7 @@ while stories_watched <= limits.max_stories:
         watch_all_stories_next.click()
         sleep(randint(2, 3))
         stories_watched += 1
+        total_stories_watched += 1
         print("stories watched: {}".format(stories_watched))
     except NoSuchElementException:
         stories_watched += limits.max_stories
@@ -89,6 +95,7 @@ else:
             suggestions_follow_btn.click()
             print("suggestions followed: {}".format(suggestions_counter))
             suggestions_counter += 1
+            total_suggestion_followed += 1
             sleep(randint(5, 15))
         else:
             print("total number of users being followed: {}".format(suggestions_counter))
@@ -119,6 +126,7 @@ else:
                 if image_like_label == "Like":
                     image_like_svg.click()
                     likes += 1
+                    total_likes += 1
                     print('liked images: {}'.format(likes))
                     sleep(randint(5, 15))  # random timer here
                     image_next=webdriver.find_element_by_xpath(
@@ -140,10 +148,6 @@ else:
                     sleep(2)  # random timer here
                 except NoSuchElementException:
                     print('no more images...')
-                    image_close=webdriver.find_element_by_xpath(
-                        '/html/body/div[4]/div[3]/button')
-                    sleep(2)
-                    image_close.click()
                     sleep(2)
                     likes += limits.max_likes
 
@@ -184,10 +188,11 @@ else:
                             'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
                 comment_item=random.choice(comment_list)
 
-                sleep(randint(1, 5))  # random timer here
+                sleep(randint(2, 5))  # random timer here
 
                 comment_box=ui.WebDriverWait(webdriver, 10).until(EC.element_to_be_clickable(
                     (By.XPATH, "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/textarea")))
+                sleep(1)
                 webdriver.execute_script(
                     "arguments[0].scrollIntoView(true);", comment_box)
 
@@ -205,6 +210,7 @@ else:
                     "/html/body/div[4]/div[2]/div/article/div[2]/section[3]/div/form/button")
                 send_comment.click()
                 comments += 1
+                total_comments += 1
                 print('images commented: {}'.format(comments))
                 sleep(25)
                 sleep(randint(5, 10))  # random timer here
@@ -214,3 +220,18 @@ else:
                 sleep(1)
         likes=0
         comments=0
+    else:
+        print("Script finished!")
+        sleep(1)
+        print("Total Stories watched: {}".format(total_stories_watched))
+        sleep(1)
+        print("Total suggestions followed: {}".format(total_suggestion_followed))
+        sleep(1)
+        print("Total number of likes: {}".format(total_likes))
+        sleep(1)
+        print("Total number of comments: {}".format(total_comments))
+        sleep(1)
+        print("closing browser...")
+        sleep(1)
+        webdriver.close()
+    
