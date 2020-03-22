@@ -1,4 +1,4 @@
-# VERSION 0.1.6
+# VERSION 0.1.7
 
 from art import *
 import pandas as pd
@@ -20,6 +20,7 @@ sys.path.insert(0, './utils/')
 import secret
 import hashtags
 import limits
+import warnings
 
 tprint("Instagram")
 tprint("Bot")
@@ -31,12 +32,30 @@ print("Loading Scripts...")
 for i in tqdm(range(100)):
     sleep(0.01)
     pass
-profile = webdriver.FirefoxProfile()
-profile.set_preference("media.volume_scale", "0.0")
-webdriver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=profile)
-sleep(2)
-webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-sleep(3)
+
+
+use_proxy = input("Do you want to use a proxy? [y/n]: ")
+
+if use_proxy == "y":
+    proxy = input("Enter your proxy IP:PORT: ")
+    from selenium.webdriver.firefox.options import Options
+
+    warnings.filterwarnings("ignore", category=DeprecationWarning) 
+    options = Options()
+    options.add_argument('--proxy-server={}'.format(proxy))
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("media.volume_scale", "0.0")
+    webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+    sleep(2)
+    webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+    sleep(3)
+else:
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("media.volume_scale", "0.0")
+    webdriver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=profile)
+    sleep(2)
+    webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+    sleep(3)
 username = webdriver.find_element_by_name('username')
 username.send_keys(secret.username)
 password = webdriver.find_element_by_name('password')
@@ -47,9 +66,12 @@ button_login = webdriver.find_element_by_xpath(
 button_login.click()
 sleep(10)
 
-notnow = webdriver.find_element_by_css_selector(
-    'button.aOOlW:nth-child(2)')
-notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
+try:
+    notnow = webdriver.find_element_by_css_selector(
+        'button.aOOlW:nth-child(2)')
+    notnow.click()  # comment these last 2 lines out, if you don't get a pop up asking about notifications
+except NoSuchElementException:
+    pass
 
 likes = 0
 comments = 0
@@ -63,10 +85,14 @@ total_stories_watched = 0
 total_suggestion_followed = 0
 
 sleep(2)
-watch_all_stories_btn = webdriver.find_element_by_xpath(
-    "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
-watch_all_stories_btn.click()
-sleep(2)
+try:
+    watch_all_stories_btn = webdriver.find_element_by_xpath(
+        "/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div")
+    watch_all_stories_btn.click()
+    sleep(2)
+except NoSuchElementException:
+    stories_watched =+ limits.max_stories
+    stories_watched += 1
 
 while stories_watched <= limits.max_stories:
     try:
