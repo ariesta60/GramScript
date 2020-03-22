@@ -46,13 +46,13 @@ Remember to keep your copy up to date!
 
 ### Support 👨‍💻
 
-# Email 📩
+#### Email 📩
 
 Any problems with running the script and any questions please cantact me via Twitter [@hendrik_bgr](https://twitter.com/Hendrik_bgr)
 
 Or via email under [hendriksdevmail@gmail.com](mailto:hendriskdevmail@gmail.com)
 
-# Telegram 📱
+#### Telegram 📱
 
 For any Support for this bot please join this Group [Telegram Support](https://t.me/joinchat/L0QW7RsOaPADq0Zal3OC9A)
 
