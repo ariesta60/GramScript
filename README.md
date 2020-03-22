@@ -1,7 +1,9 @@
 <div align="center">
   <img src="./img/logo-icon.svg" alt="alt text" width="200px">
   <div>
-    <h1>Instagram Selenium Bot</h1>
+    <h1>GramScript</h1>
+    <h3>Instagram Selenium Bot</h3>
+    <a href="http://www.gramscript.com" target="_blank">Offical Website</a>
   </div>
 </div>
 
