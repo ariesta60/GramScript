@@ -1,4 +1,4 @@
-# VERSION 0.1.
+# VERSION 0.1.7
 
 from art import *
 import pandas as pd
@@ -27,7 +27,7 @@ tprint("Bot")
 sleep(2)
 print("Made with Selenium")
 sleep(1)
-print("Version 0.1.6")
+print("Version 0.1.7")
 print("Loading Scripts...")
 for i in tqdm(range(100)):
     sleep(0.01)
