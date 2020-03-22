@@ -1,4 +1,4 @@
-# VERSION 0.1.7
+# VERSION 0.1.
 
 from art import *
 import pandas as pd
@@ -37,18 +37,41 @@ for i in tqdm(range(100)):
 use_proxy = input("Do you want to use a proxy? [y/n]: ")
 
 if use_proxy == "y":
-    proxy = input("Enter your proxy IP:PORT: ")
-    from selenium.webdriver.firefox.options import Options
+    proxy_type = input("IP:PORT only? [y/n]: ")
+    if proxy_type == "n":
+        proxy_username = input("Enter your proxy username: ")
+        proxy_password = input("Enter your proxy passowrd: ")
+        proxy_host = input("Enter your proxy host (ip:port): ")
+        from selenium.webdriver.firefox.options import Options
+        from seleniumwire import webdriver
 
-    warnings.filterwarnings("ignore", category=DeprecationWarning) 
-    options = Options()
-    options.add_argument('--proxy-server={}'.format(proxy))
-    profile = webdriver.FirefoxProfile()
-    profile.set_preference("media.volume_scale", "0.0")
-    webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
-    sleep(2)
-    webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-    sleep(3)
+        options = {
+            'proxy': {
+                'http': 'http://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host),
+                'https': 'https://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host)
+                }
+        }
+
+        warnings.filterwarnings("ignore", category=DeprecationWarning) 
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("media.volume_scale", "0.0")
+        webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+        sleep(2)
+        webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+        sleep(3)
+    else:
+        proxy = input("Enter your proxy IP:PORT: ")
+        from selenium.webdriver.firefox.options import Options
+
+        warnings.filterwarnings("ignore", category=DeprecationWarning) 
+        options = Options()
+        options.add_argument('--proxy-server={}'.format(proxy))
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("media.volume_scale", "0.0")
+        webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+        sleep(2)
+        webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+        sleep(3)
 else:
     profile = webdriver.FirefoxProfile()
     profile.set_preference("media.volume_scale", "0.0")
