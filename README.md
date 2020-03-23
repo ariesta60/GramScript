@@ -11,8 +11,6 @@
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
 
-Find more of my Selenium Bots here: http://selenium-bots.000webhostapp.com/
-
 ## ✅ Working after March 2020 API Update! ✅
 
 This script is still working after Instagram is cutting down the API access and with that loads of long working instagram script. This script does not use any API and for that I will be working beyond this update.
@@ -72,7 +70,7 @@ As well as Selenium and the Firefox Webdriver
 Get a copy of the Project. Open your Terminal and enter:
 
 ```
-git clone https://github.com/hendrikbgr/Instagram-Selenium-Bot
+git clone https://github.com/hendrikbgr/GramScript
 ```
 
 To install all needed requirements run the following command in the project directory:
