@@ -7,9 +7,11 @@
   </div>
 </div>
 
-# 🔥 Version 0.1.7 🔥
+# 🔥 Version 0.1.8 🔥
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
+
+Never miss an Update! [Telegram Updates](https://t.me/joinchat/AAAAAEwL2tNqFyKudR7YEw)
 
 ## ✅ Working after March 2020 API Update! ✅
 
@@ -30,6 +32,9 @@ Remember to keep your copy up to date!
 * Full Proxy Support
     * Enter your Proxy at start
     * Only use Premium Proxies!
+* Mass Story Viewer
+    * Watch Stories from certain users followers list
+    * Undetected by Instagram
 * Watch set amount of Stories from feed
     * Brower is muted for story watching
     * Custom limit on stories being watched
