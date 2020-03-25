@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# 🔥 Version 0.1.8 🔥
+# 🔥 Version 0.1.9 🔥
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
 
@@ -23,7 +23,7 @@ Remember to keep your copy up to date!
 
 🚀 Automate your Instagram Account 🚀
 
-📌 Ver. 0.1.7 📌
+📌 Ver. 0.1.9 📌
 
 📱 Full Proxy Support 📱
 
@@ -32,6 +32,7 @@ Remember to keep your copy up to date!
 * Full Proxy Support
     * Enter your Proxy at start
     * Only use Premium Proxies!
+    * Enter Proxy manually or use proxy config file
 * Mass Story Viewer
     * Watch Stories from certain users followers list
     * Undetected by Instagram
@@ -45,9 +46,14 @@ Remember to keep your copy up to date!
     * Custom limit on media's being liked
     * If media gets and error whilst loading bot skips the media
 * Comment on recent posts from a certain hashtag
+    * Detects if post has disabled comments
     * Detects if post already got commented by user
     * Custom limit on media's being commented
     * If media gets and error whilst loading bot skips the media
+* End Report when Script is finished
+    * Shows you the start time of the script
+    * Shows you the end time of the script
+    * Shows you the number of actions finished
 
 ### Support 👨‍💻
 
