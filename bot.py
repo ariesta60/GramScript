@@ -1,4 +1,4 @@
-# VERSION 0.1.8
+# VERSION 0.1.9
 
 from art import *
 import pandas as pd
@@ -20,60 +20,108 @@ sys.path.insert(0, './utils/')
 import secret
 import hashtags
 import limits
+import proxy
 import warnings
+import datetime
 
 tprint("GramScript")
 sleep(0.5)
 print("Made with Selenium")
 sleep(0.5)
-print("Version 0.1.8")
+print("Version 0.1.9")
 print("Loading Scripts...")
-for i in tqdm(range(100)):
-    sleep(0.01)
+time_start = datetime.datetime.now()
+for i in tqdm(range(6)):
+    sleep(0.05)
     pass
 
 
 use_proxy = input("Do you want to use a proxy? [y/n]: ")
 
 if use_proxy == "y":
-    proxy_type = input("IP:PORT only? [y/n]: ")
-    if proxy_type == "n":
-        proxy_username = input("Enter your proxy username: ")
-        proxy_password = input("Enter your proxy passowrd: ")
-        proxy_host = input("Enter your proxy host (ip:port): ")
-        from selenium.webdriver.firefox.options import Options
-        from seleniumwire import webdriver
+    use_proxy_config = input("Do you want to use the proxy config file? [y/n]: ")
+    if use_proxy_config == "n":
+        proxy_type = input("IP:PORT only? [y/n]: ")
+        if proxy_type == "n":
+            proxy_username = input("Enter your proxy username: ")
+            proxy_password = input("Enter your proxy passowrd: ")
+            proxy_host = input("Enter your proxy host (ip:port): ")
+            from selenium.webdriver.firefox.options import Options
+            from seleniumwire import webdriver
+            #options = webdriver.ChromeOptions()
 
-        options = {
-            'proxy': {
-                'http': 'http://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host),
-                'https': 'https://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host)
-                }
-        }
+            options = {
+                'proxy': {
+                    'http': 'http://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host),
+                    'https': 'https://{}:{}@{}'.format(proxy_username, proxy_password, proxy_host)
+                    }
+            }
+            ##options.add_argument("--mute-audio")
+            warnings.filterwarnings("ignore", category=DeprecationWarning) 
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("media.volume_scale", "0.0")
+            ##webdriver = webdriver.Chrome(seleniumwire_options=options, chrome_options=options, executable_path='./chromedriver')
+            webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+            sleep(2)
+            webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+            sleep(3)
+        else:
+            proxy_host = input("Enter your proxy IP:PORT: ")
+            from selenium.webdriver.firefox.options import Options
+            #options = webdriver.ChromeOptions()
 
-        warnings.filterwarnings("ignore", category=DeprecationWarning) 
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("media.volume_scale", "0.0")
-        webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
-        sleep(2)
-        webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-        sleep(3)
+            warnings.filterwarnings("ignore", category=DeprecationWarning) 
+            options.add_argument('--proxy-server={}'.format(proxy_host))
+            ##options.add_argument("--mute-audio")
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("media.volume_scale", "0.0")
+            ##webdriver = webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+            webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+            sleep(2)
+            webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+            sleep(3)
     else:
-        proxy = input("Enter your proxy IP:PORT: ")
-        from selenium.webdriver.firefox.options import Options
+        proxy_type = input("IP:PORT only? [y/n]: ")
+        if proxy_type == "n":
+            from selenium.webdriver.firefox.options import Options
+            from seleniumwire import webdriver
+            #options = webdriver.ChromeOptions()
 
-        warnings.filterwarnings("ignore", category=DeprecationWarning) 
-        options = Options()
-        options.add_argument('--proxy-server={}'.format(proxy))
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("media.volume_scale", "0.0")
-        webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
-        sleep(2)
-        webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-        sleep(3)
+            options = {
+                'proxy': {
+                    'http': 'http://{}:{}@{}'.format(proxy.proxy_username, proxy.proxy_password, proxy.proxy_host),
+                    'https': 'https://{}:{}@{}'.format(proxy.proxy_username, proxy.proxy_password, proxy.proxy_host)
+                    }
+            }
+            ##options.add_argument("--mute-audio")
+            warnings.filterwarnings("ignore", category=DeprecationWarning) 
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("media.volume_scale", "0.0")
+            ##webdriver = webdriver.Chrome(seleniumwire_options=options, chrome_options=options, executable_path='./chromedriver')
+            webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+            sleep(2)
+            webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+            sleep(3)
+        else:
+            from selenium.webdriver.firefox.options import Options
+            #options = webdriver.ChromeOptions()
+
+            warnings.filterwarnings("ignore", category=DeprecationWarning) 
+            options.add_argument('--proxy-server={}'.format(proxy.proxy_host))
+            ##options.add_argument("--mute-audio")
+            profile = webdriver.FirefoxProfile()
+            profile.set_preference("media.volume_scale", "0.0")
+            ##webdriver = webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
+            webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
+            sleep(2)
+            webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
+            sleep(3)
 else:
     profile = webdriver.FirefoxProfile()
     profile.set_preference("media.volume_scale", "0.0")
+    ##options = webdriver.ChromeOptions()
+    ##options.add_argument("--mute-audio")
+    ##webdriver = webdriver.Chrome(executable_path='./chromedriver')
     webdriver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=profile)
     sleep(2)
     webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
@@ -104,7 +152,7 @@ sleep(2)
 
 fBody  = webdriver.find_element_by_xpath("//div[@class='isgrP']")
 scroll = 0
-while scroll < 15: # scroll 5 times
+while scroll < limits.scroll_amount: # scroll 5 times
     webdriver.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', fBody)
     sleep(2)
     scroll += 1
@@ -146,6 +194,7 @@ try:
         else:
             pass
 except IndexError as error:
+    pass
 
     webdriver.get('https://www.instagram.com/')
 
@@ -236,7 +285,8 @@ except IndexError as error:
                         image_next.click()
                         sleep(randint(3, 4))  # random timer here
                     else:
-                        print('image already liked')
+                        sleep(2)
+                        print('image already liked by {}'.format(secret.username))
                         image_next=webdriver.find_element_by_xpath(
                             '/html/body/div[4]/div[1]/div/div/a[2]')
                         image_next.click()
@@ -244,6 +294,7 @@ except IndexError as error:
                 except NoSuchElementException:
                     try:
                         print('error loading image...')
+                        sleep(2)
                         image_next=webdriver.find_element_by_xpath(
                                 '/html/body/div[4]/div[1]/div/div/a[2]')
                         image_next.click()
@@ -276,7 +327,17 @@ except IndexError as error:
                 
                 for i in comment_by_user:
                     all_comments.append(i.get_attribute('innerText'))
-
+                try:
+                    comment_allowed = webdriver.find_element_by_xpath("/html/body/div[4]/div[2]/div/article/div[2]/div[3]/div")
+                    if (comment_allowed.text == "Comments on this post have been limited."):
+                        sleep(2)
+                        image_next=webdriver.find_element_by_xpath(
+                        '/html/body/div[4]/div[1]/div/div/a[2]')
+                        image_next.click()
+                        print("Media does not allow comments")
+                        sleep(2)
+                except NoSuchElementException:
+                    pass
                 if any(x == secret.username for x in all_comments):
                     sleep(2)
                     image_next=webdriver.find_element_by_xpath(
@@ -284,10 +345,9 @@ except IndexError as error:
                     image_next.click()
                     sleep(2)
                 else:
-                    print("no comment")
+                    print("no comment by {}".format(secret.username))
                     sleep(2)
-                    comment_list=['nice one 👍🏼', 'great! 🚀',
-                                'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
+                    comment_list=['nice one 👍🏼', 'great! 🚀', 'Amazing 😍', 'Looking great!', 'so cool!!! 😳', '🔥🔥🔥🔥', '😍😍😍', '🧬 Great Stuff!!']
                     comment_item=random.choice(comment_list)
 
                     sleep(randint(2, 5))  # random timer here
@@ -324,6 +384,11 @@ except IndexError as error:
             comments=0
         else:
             print("Script finished!")
+            time_end = datetime.datetime.now()
+            sleep(1)
+            print ("Script Started at: {}".format(time_start.strftime("%Y-%m-%d %H:%M:%S")))
+            sleep(1)
+            print ("Script Ended at: {}".format(time_end.strftime("%Y-%m-%d %H:%M:%S")))
             sleep(1)
             print("Total Stories watched from {}'s followers: {}".format(limits.user_watch_followers_stories, stories_bf_watched))
             sleep(1)
