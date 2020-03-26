@@ -34,7 +34,7 @@ Remember to keep your copy up to date!
     * Only use Premium Proxies!
     * Enter Proxy manually or use proxy config file
 * Mass Story Viewer
-    * Watch Stories from certain users followers list
+    * Watch Stories from list of users followers list
     * Undetected by Instagram
 * Watch set amount of Stories from feed
     * Brower is muted for story watching
@@ -54,6 +54,8 @@ Remember to keep your copy up to date!
     * Shows you the start time of the script
     * Shows you the end time of the script
     * Shows you the number of actions finished
+* Config file
+    * Enable or Disable any feature of the bot
 
 ### Support 👨‍💻
 
