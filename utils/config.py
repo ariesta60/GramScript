@@ -1,0 +1,6 @@
+story_from_users_followers = "true"
+story_from_feed = "true"
+follow_suggestions = "true"
+like = "true"
+comment = "true"
+report = "true"
