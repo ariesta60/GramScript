@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# 🔥 Version 0.1.9.1 🔥
+# 🔥 Version 0.1.9.2 🔥
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
 
@@ -23,7 +23,7 @@ Remember to keep your copy up to date!
 
 🚀 Automate your Instagram Account 🚀
 
-📌 Ver. 0.1.9.1 📌
+📌 Ver. 0.1.9.2 📌
 
 📱 Full Proxy Support 📱
 
@@ -56,6 +56,8 @@ Remember to keep your copy up to date!
     * Shows you the number of actions finished
 * Config file
     * Enable or Disable any feature of the bot
+* Data Saving Mode
+    * mode to save data (script does not load any images)
 
 ### Support 👨‍💻
 

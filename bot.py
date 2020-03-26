@@ -1,4 +1,4 @@
-# VERSION 0.1.9.1
+# VERSION 0.1.9.2
 
 from art import *
 import pandas as pd
@@ -37,7 +37,7 @@ tprint("GramScript")
 sleep(0.5)
 print("Made with Selenium")
 sleep(0.5)
-print("Version 0.1.9.1")
+print("Version 0.1.9.2")
 print("Loading Scripts...")
 time_start = datetime.datetime.now()
 for i in tqdm(range(6)):
@@ -71,6 +71,11 @@ def proxy():
                 warnings.filterwarnings("ignore", category=DeprecationWarning) 
                 profile = webdriver.FirefoxProfile()
                 profile.set_preference("media.volume_scale", "0.0")
+                if config.data_save_mode == "true":
+                    profile.set_preference("permissions.default.image", 2)
+                    print("Data Save mode - Active")
+                else:
+                    pass
                 ##webdriver = webdriver.Chrome(seleniumwire_options=options, chrome_options=options, executable_path='./chromedriver')
                 webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
                 sleep(2)
@@ -86,6 +91,11 @@ def proxy():
                 ##options.add_argument("--mute-audio")
                 profile = webdriver.FirefoxProfile()
                 profile.set_preference("media.volume_scale", "0.0")
+                if config.data_save_mode == "true":
+                    profile.set_preference("permissions.default.image", 2)
+                    print("Data Save mode - Active")
+                else:
+                    pass
                 ##webdriver = webdriver.Chrome(chrome_options=options, executable_path='./chromedriver')
                 webdriver = webdriver.Firefox(firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
                 sleep(2)
@@ -108,6 +118,11 @@ def proxy():
                 warnings.filterwarnings("ignore", category=DeprecationWarning) 
                 profile = webdriver.FirefoxProfile()
                 profile.set_preference("media.volume_scale", "0.0")
+                if config.data_save_mode == "true":
+                    profile.set_preference("permissions.default.image", 2)
+                    print("Data Save mode - Active")
+                else:
+                    pass
                 ##webdriver = webdriver.Chrome(seleniumwire_options=options, chrome_options=options, executable_path='./chromedriver')
                 webdriver = webdriver.Firefox(seleniumwire_options=options, firefox_options=options, executable_path="./geckodriver", firefox_profile=profile)
                 sleep(2)
@@ -129,6 +144,11 @@ def proxy():
     else:
         profile = webdriver.FirefoxProfile()
         profile.set_preference("media.volume_scale", "0.0")
+        if config.data_save_mode == "true":
+            profile.set_preference("permissions.default.image", 2)
+            print("Data Save mode - Active")
+        else:
+            pass
         ##options = webdriver.ChromeOptions()
         ##options.add_argument("--mute-audio")
         ##webdriver = webdriver.Chrome(executable_path='./chromedriver')
