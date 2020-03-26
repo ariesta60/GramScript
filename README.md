@@ -7,7 +7,7 @@
   </div>
 </div>
 
-# 🔥 Version 0.1.9 🔥
+# 🔥 Version 0.1.9.1 🔥
 
 This is the first version of this Instagram bot. Much more is to come in future and this is just a working beta. It's easy to use and very simple for now. I am planning on adding much more features in the future and automate a lot more processes. My goal is to create a Instagram script which is able to run 24/7 without beeing detected by Instagram.
 
@@ -23,7 +23,7 @@ Remember to keep your copy up to date!
 
 🚀 Automate your Instagram Account 🚀
 
-📌 Ver. 0.1.9 📌
+📌 Ver. 0.1.9.1 📌
 
 📱 Full Proxy Support 📱
 
@@ -34,7 +34,7 @@ Remember to keep your copy up to date!
     * Only use Premium Proxies!
     * Enter Proxy manually or use proxy config file
 * Mass Story Viewer
-    * Watch Stories from certain users followers list
+    * Watch Stories from list of users followers list
     * Undetected by Instagram
 * Watch set amount of Stories from feed
     * Brower is muted for story watching
@@ -54,6 +54,8 @@ Remember to keep your copy up to date!
     * Shows you the start time of the script
     * Shows you the end time of the script
     * Shows you the number of actions finished
+* Config file
+    * Enable or Disable any feature of the bot
 
 ### Support 👨‍💻
 
