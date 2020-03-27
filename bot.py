@@ -47,6 +47,7 @@ for i in tqdm(range(6)):
 def proxy():
     global webdriver
     global stories_watched
+    global options
     use_proxy = input("Do you want to use a proxy? [y/n]: ")
 
     if use_proxy == "y":
@@ -59,6 +60,7 @@ def proxy():
                 proxy_host = input("Enter your proxy host (ip:port): ")
                 from selenium.webdriver.firefox.options import Options
                 from seleniumwire import webdriver
+                options = Options()
                 #options = webdriver.ChromeOptions()
 
                 options = {
@@ -84,6 +86,7 @@ def proxy():
             else:
                 proxy_host = input("Enter your proxy IP:PORT: ")
                 from selenium.webdriver.firefox.options import Options
+                options = Options()
                 #options = webdriver.ChromeOptions()
 
                 warnings.filterwarnings("ignore", category=DeprecationWarning) 
@@ -106,8 +109,11 @@ def proxy():
             if proxy_type == "n":
                 from selenium.webdriver.firefox.options import Options
                 from seleniumwire import webdriver
-                #options = webdriver.ChromeOptions()
+                sys.path.insert(0, './utils/')
+                import proxy
 
+                #options = webdriver.ChromeOptions()
+                options = Options()
                 options = {
                     'proxy': {
                         'http': 'http://{}:{}@{}'.format(proxy.proxy_username, proxy.proxy_password, proxy.proxy_host),
@@ -130,6 +136,10 @@ def proxy():
                 sleep(3)
             else:
                 #options = webdriver.ChromeOptions()
+                from selenium.webdriver.firefox.options import Options
+                sys.path.insert(0, './utils/')
+                import proxy
+                options = Options()
 
                 warnings.filterwarnings("ignore", category=DeprecationWarning) 
                 options.add_argument('--proxy-server={}'.format(proxy.proxy_host))
