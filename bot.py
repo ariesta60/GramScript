@@ -1,4 +1,4 @@
-# VERSION 0.1.9.2
+# VERSION 0.1.9.3
 
 from art import *
 import pandas as pd
@@ -37,7 +37,7 @@ tprint("GramScript")
 sleep(0.5)
 print("Made with Selenium")
 sleep(0.5)
-print("Version 0.1.9.2")
+print("Version 0.1.9.3")
 print("Loading Scripts...")
 time_start = datetime.datetime.now()
 for i in tqdm(range(6)):
